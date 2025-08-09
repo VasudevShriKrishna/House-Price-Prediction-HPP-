@@ -3,14 +3,15 @@
 This project is a web application that predicts house prices using machine learning, built with Django.
 
 ## Features
-- User-friendly interface to input house details (location, size, bedrooms, bathrooms, etc.)
-- Real-time house price prediction powered by a trained machine learning model
-- Clean and responsive UI for ease of use
+- User-friendly interface to input house details.
+- Real-time house price prediction powered by a trained machine learning model.
+- Clean and responsive UI for ease of use.
+- Stores prediction history in the database
+- Displays previous predictions for review
 
 ## Technologies Used
 - Django (backend & frontend)
-- Python (machine learning model development)
-- scikit-learn (or any ML library used)
+- Python libraries: pandas, numpy, scikit-learn
 - HTML/CSS/Bootstrap (frontend styling)
 
 ## How It Works
