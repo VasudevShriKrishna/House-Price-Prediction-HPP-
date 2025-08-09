@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Prediction History</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            background-color: #f9f9f9;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 40px;
+            font-size: 15px;
+        }
+
+        th,
+        td {
+            border: 1px solid #aaa;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #444;
+            color: white;
+        }
+
+        h2 {
+            text-align: center;
+            color: blue;
+            font-size: 35px;
+        }
+
+        a button {
+            padding: 10px 20px;
+            background-color: black;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 27px;
+        }
+
+        a button:hover {
+            background-color: orangered;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Last Recent Predictions</h2>
+
+    <table>
+        <tr>
+            <th>Purchase Budget</th>
+            <th>House Age</th>
+            <th>Number of Bedrooms(BHK)</th>
+            <th>Area's Resident Population</th>
+            <th>City</th>
+            <th>Furnishing Status</th>
+            <th>Predicted Price (₹)</th>
+            <th>Prediction Date</th>
+        </tr>
+        {% for entry in history %}
+        <tr>
+            <td>{{ entry.budget }}</td>
+            <td>{{ entry.age }}</td>
+            <td>{{ entry.bedrooms }}</td>
+            <td>{{ entry.population }}</td>
+            <td>{{ entry.city }}</td>
+            <td>{{ entry.furnishing_status }}</td>
+            <td>{{ entry.prediction }}</td>
+            <td>{{ entry.date }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <a href="/predict/"><button>Back to Prediction</button></a>
+
+</body>
+
+</html>

@@ -1,0 +1,324 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Prediction Form</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+
+    <!-- Font Awesome for toggle icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        /*CSS Variables for Theming*/
+        :root {
+            --bg-start: #dbeafe;
+            --bg-end: #93c5fd;
+            --text-color: #1f2937;
+            --form-bg: rgba(255, 255, 255, 0.15);
+            --input-bg: rgba(255, 255, 255, 0.5);
+            --button-gradient: linear-gradient(135deg, #06b6d4, #3b82f6);
+            --hover-shadow: 0 8px 16px rgba(59, 130, 246, 0.4);
+        }
+
+        [data-theme="dark"] {
+            --bg-start: #1e1e2f;
+            --bg-end: #2d2d44;
+            --text-color: #f3f4f6;
+            --form-bg: rgba(255, 255, 255, 0.08);
+            --input-bg: rgba(255, 255, 255, 0.1);
+            --button-gradient: linear-gradient(135deg, #8b5cf6, #6366f1);
+            --hover-shadow: 0 8px 16px rgba(139, 92, 246, 0.4);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+            background-attachment: fixed;
+            color: var(--text-color);
+            transition: all 0.4s ease;
+        }
+
+        .main {
+            max-width: 950px;
+            margin: 100px auto;
+            padding: 50px;
+            background: var(--form-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 18px;
+            box-shadow: 0 22px 32px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transition: background 0.3s ease;
+        }
+
+        h1 {
+            font-size: 38px;
+            font-weight: 700;
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            font-size: 50px;
+            margin-top: 35px;
+            color: blue;
+        }
+
+        label {
+            font-weight: 950;
+            font-size: x-large;
+            margin-bottom: 8px;
+            display: block;
+            text-align: left;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--input-bg);
+            border: none;
+            border-radius: 12px;
+            color: var(--text-color);
+            margin-bottom: 20px;
+            transition: box-shadow 0.3s ease;
+        }
+
+        input[type="number"]:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.4);
+        }
+
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .form-group {
+            flex: 0 0 48%;
+            margin-bottom: 20px;
+        }
+
+        .form-group.full-width {
+            flex: 0 0 100%;
+        }
+
+        input[type="submit"],
+        .history-button {
+            background: var(--button-gradient);
+            color: white;
+            padding: 14px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        input[type="submit"]:hover,
+        .history-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        footer {
+            text-align: center;
+            color: navy;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            font-size: 21px;
+            width: 100%;
+        }
+
+        footer a {
+            color: inherit;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .form-group {
+                flex: 0 0 100%;
+            }
+
+            .main {
+                margin: 40px 20px;
+                padding: 30px;
+            }
+        }
+
+        .custom-select-wrapper {
+            position: relative;
+        }
+
+        .custom-select-wrapper select {
+            width: 100%;
+            padding: 12px;
+            padding-right: 40px;
+            background-color: var(--input-bg);
+            border: none;
+            border-radius: 12px;
+            color: var(--text-color);
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            margin-bottom: 20px;
+            transition: box-shadow 0.3s ease;
+            font-size: 16px;
+            font-family: inherit;
+        }
+
+        .custom-select-wrapper::after {
+            content: '\f078';
+            /* FontAwesome down arrow */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: var(--text-color);
+            font-size: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container main">
+        <h1 style="color:rgb(255, 0, 0);">Enter Real Estate Values</h1>
+        <form action="/result/">
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Purchase Budget</label>
+                    <input type="number" name="J1" required>
+                </div>
+                <div class="form-group">
+                    <label>House Age</label>
+                    <input type="number" name="J2" max="15" min="0" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="bhk">Number of Bedrooms (BHK)</label>
+                    <div class="custom-select-wrapper">
+                        <select id="bhk" name="J3" required>
+                            <option value="" disabled selected>Select BHK</option>
+                            <option value="1">1 BHK</option>
+                            <option value="1.5">1.5 BHK</option>
+                            <option value="2">2 BHK</option>
+                            <option value="2.5">2.5 BHK</option>
+                            <option value="3">3 BHK</option>
+                            <option value="3.5">3.5 BHK</option>
+                            <option value="4">4 BHK</option>
+                            <option value="4.5">4.5 BHK</option>
+                            <option value="5">5 BHK</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Area's Resident Population</label>
+                    <input type="number" name="J4" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="citySelect">City</label>
+                    <div class="custom-select-wrapper">
+                        <select id="citySelect" name="J5" required>
+                            <option value="" disabled selected>Select a city</option>
+                            <option>Agra</option>
+                            <option>Ahmedabad</option>
+                            <option>Aligarh</option>
+                            <option>Amritsar</option>
+                            <option>Bengaluru</option>
+                            <option>Bhopal</option>
+                            <option>Bhubaneswar</option>
+                            <option>Chhatrapati Sambhajinagar</option>
+                            <option>Chennai</option>
+                            <option>Coimbatore</option>
+                            <option>Delhi</option>
+                            <option>Durgapur</option>
+                            <option>Gorakhpur</option>
+                            <option>Gwalior</option>
+                            <option>Hyderabad</option>
+                            <option>Jaipur</option>
+                            <option>Jalandhar</option>
+                            <option>Jamshedpur</option>
+                            <option>Jhansi</option>
+                            <option>Jodhpur</option>
+                            <option>Kanpur</option>
+                            <option>Kalyan-Dombivli</option>
+                            <option>Kolkata</option>
+                            <option>Kota</option>
+                            <option>Lucknow</option>
+                            <option>Ludhiana</option>
+                            <option>Madurai</option>
+                            <option>Mangalore</option>
+                            <option>Meerut</option>
+                            <option>Mumbai</option>
+                            <option>Nashik</option>
+                            <option>Navi Mumbai</option>
+                            <option>Nagpur</option>
+                            <option>Patna</option>
+                            <option>Pune</option>
+                            <option>Raipur</option>
+                            <option>Rajkot</option>
+                            <option>Rourkela</option>
+                            <option>Srinagar</option>
+                            <option>Surat</option>
+                            <option>Thiruvananthapuram</option>
+                            <option>Tiruppur</option>
+                            <option>Vadodara</option>
+                            <option>Varanasi</option>
+                            <option>Vasai-Virar</option>
+                            <option>Vijayawada</option>
+                            <option>Visakhapatnam</option>
+                            <option>Udaipur</option>
+                            <option>Warangal</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Furnishing Status -->
+                <div class="form-group">
+                    <label for="furnishingStatus">Furnishing Status</label>
+                    <div class="custom-select-wrapper">
+                        <select id="furnishingStatus" name="J6" required>
+                            <option value="" disabled selected>Select furnishing status</option>
+                            <option>Unfurnished</option>
+                            <option>Semi-furnished</option>
+                            <option>Fully furnished</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div><input type="submit" value="Predict"></div>
+
+        </form>
+
+        <form action="/history/">
+            <button type="submit" class="history-button">Show recent Predictions</button>
+        </form>
+
+        {% if result2 %}
+        <h2>{{ result2 }}</h2>
+        {% endif %}
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>Creator : JNKP_Krish — <a href="mailto:krish123@gmail.com">krish123@gmail.com</a></p>
+    </footer>
+</body>
+
+</html>
+

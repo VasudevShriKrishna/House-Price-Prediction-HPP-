@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <style>
+        h2 {
+            margin-top: 45px;
+            font-size: 47px;
+            color: black;
+        }
+
+        h1 {
+            font-size: 59px;
+            color: blue;
+        }
+
+        input[type=submit] {
+            background-color: navy;
+            color: goldenrod;
+            font-size: x-large;
+            margin-top: 10%;
+            align-items: center;
+            cursor: pointer;
+            padding: 23px 32px;
+        }
+
+        body {
+            background-image: url("{% static '6_3.jpg' %}");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            min-height: 100vh;
+        }
+
+        footer,
+        a {
+            text-align: center;
+            color: navy;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            font-size: 29px;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body style="text-align: center">
+    <h2>Welcome to </h2>
+    <h1>&nbsp;&nbsp;&nbsp;&nbsp; Housing Price Predicton System</h1>
+    <form action="predict">
+        <input type="submit" value="START">
+    </form>
+
+
+    <footer>
+        <b>
+            <p> Creator : JNKP_Krish <br><a href="mailto:krish123@gmail.com">krish123@gmail.com</a></p>
+        </b>
+    </footer>
+</body>
+
+</html>
