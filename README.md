@@ -23,4 +23,5 @@ This project is a web application that predicts house prices using machine learn
 
 ## Installation & Setup
 1. Clone the repository
-2. Create a virtual environment and activate it:
+2. Take an Excellent .csv datasets for it
+3. Create a virtual environment and activate it:
